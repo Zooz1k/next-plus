@@ -1,472 +1,615 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Next Plus</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Next Plus</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, Tahoma, sans-serif;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Tahoma,sans-serif;
+}
 
-    body {
-      background: #080b12;
-      color: #fff;
-      min-height: 100vh;
-    }
+body{
+  background:#080b12;
+  color:#fff;
+  min-height:100vh;
+}
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(8,11,18,.95);
-      border-bottom: 1px solid #202634;
-      backdrop-filter: blur(10px);
-    }
+header{
+  padding:18px 6%;
+  border-bottom:1px solid #202633;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-    .nav {
-      max-width: 1100px;
-      margin: auto;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
+.logo{
+  color:#20d6a3;
+  font-size:25px;
+  font-weight:bold;
+}
 
-    .logo {
-      font-size: 24px;
-      font-weight: 900;
-      color: #20d6a3;
-      letter-spacing: .5px;
-    }
+.container{
+  width:92%;
+  max-width:600px;
+  margin:35px auto;
+}
 
-    .login-btn {
-      border: 1px solid #263142;
-      background: #111722;
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: 12px;
-      cursor: pointer;
-    }
+.card{
+  background:#111722;
+  border:1px solid #242c3a;
+  border-radius:20px;
+  padding:25px;
+  margin-bottom:20px;
+}
 
-    .hero {
-      max-width: 1100px;
-      margin: auto;
-      padding: 55px 20px 30px;
-    }
+h1{
+  font-size:30px;
+  margin-bottom:10px;
+}
 
-    .welcome {
-      color: #20d6a3;
-      font-size: 14px;
-      margin-bottom: 12px;
-    }
+h2{
+  margin-bottom:20px;
+}
 
-    h1 {
-      font-size: clamp(30px, 7vw, 52px);
-      line-height: 1.2;
-      margin-bottom: 15px;
-    }
+p{
+  color:#9da7b8;
+  line-height:1.8;
+}
 
-    .hero p {
-      color: #9aa4b5;
-      line-height: 1.8;
-      max-width: 650px;
-    }
+input{
+  width:100%;
+  padding:15px;
+  margin:8px 0;
+  border-radius:12px;
+  border:1px solid #303949;
+  background:#080b12;
+  color:white;
+  font-size:16px;
+}
 
-    .actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 25px;
-      flex-wrap: wrap;
-    }
+button{
+  width:100%;
+  padding:15px;
+  margin-top:10px;
+  border:0;
+  border-radius:12px;
+  background:#20d6a3;
+  color:#06100c;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    .primary {
-      background: #20d6a3;
-      color: #06100c;
-      border: 0;
-      padding: 13px 22px;
-      border-radius: 12px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+button.secondary{
+  background:#18202d;
+  color:white;
+  border:1px solid #303949;
+}
 
-    .secondary {
-      background: #111722;
-      color: #fff;
-      border: 1px solid #263142;
-      padding: 13px 22px;
-      border-radius: 12px;
-      cursor: pointer;
-    }
+button.logout{
+  width:auto;
+  padding:10px 18px;
+  background:#18202d;
+  color:white;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-    }
+.hidden{
+  display:none!important;
+}
 
-    .section-title {
-      margin: 25px 0 18px;
-      font-size: 22px;
-    }
+.error{
+  color:#ff6b6b;
+  margin-top:10px;
+}
 
-    .services {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
+.success{
+  color:#20d6a3;
+  margin-top:10px;
+}
 
-    .service {
-      background: #111620;
-      border: 1px solid #202838;
-      border-radius: 18px;
-      padding: 20px;
-      transition: .2s;
-    }
+.balance{
+  font-size:32px;
+  color:#20d6a3;
+  font-weight:bold;
+  margin-top:10px;
+}
 
-    .service:hover {
-      transform: translateY(-3px);
-      border-color: #20d6a3;
-    }
+.notification{
+  padding:15px;
+  border-radius:12px;
+  background:#18202d;
+  margin-top:10px;
+}
 
-    .icon {
-      width: 45px;
-      height: 45px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #18232c;
-      border-radius: 13px;
-      font-size: 22px;
-      margin-bottom: 18px;
-    }
+.service{
+  padding:18px;
+  border:1px solid #283142;
+  border-radius:15px;
+  margin-top:12px;
+}
 
-    .service h3 {
-      font-size: 17px;
-      margin-bottom: 8px;
-    }
+.service-title{
+  font-size:19px;
+  font-weight:bold;
+}
 
-    .service p {
-      color: #8993a4;
-      font-size: 13px;
-      min-height: 38px;
-    }
-
-    .service-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 20px;
-    }
-
-    .price {
-      color: #20d6a3;
-      font-weight: bold;
-    }
-
-    .order-btn {
-      border: 0;
-      background: #1a2730;
-      color: #20d6a3;
-      padding: 8px 12px;
-      border-radius: 9px;
-      cursor: pointer;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin: 35px 0;
-    }
-
-    .feature {
-      background: #0e131c;
-      border: 1px solid #202838;
-      border-radius: 16px;
-      padding: 20px;
-    }
-
-    .feature strong {
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .feature span {
-      color: #8d97a8;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    footer {
-      border-top: 1px solid #202634;
-      text-align: center;
-      color: #697386;
-      padding: 25px 15px;
-      margin-top: 45px;
-      font-size: 13px;
-    }
-
-    /* Modal */
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.75);
-      z-index: 500;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal-box {
-      width: 100%;
-      max-width: 420px;
-      background: #111620;
-      border: 1px solid #263142;
-      border-radius: 20px;
-      padding: 25px;
-    }
-
-    .modal-box h2 {
-      margin-bottom: 20px;
-    }
-
-    .input {
-      width: 100%;
-      background: #090d14;
-      color: #fff;
-      border: 1px solid #293345;
-      padding: 14px;
-      border-radius: 11px;
-      margin-bottom: 12px;
-      outline: none;
-    }
-
-    .input:focus {
-      border-color: #20d6a3;
-    }
-
-    .close {
-      float: left;
-      background: transparent;
-      color: #aaa;
-      border: 0;
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 800px) {
-      .services {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .services {
-        grid-template-columns: 1fr;
-      }
-
-      .nav {
-        padding: 13px 15px;
-      }
-
-      .hero {
-        padding-top: 35px;
-      }
-    }
-  </style>
+.price{
+  color:#20d6a3;
+  font-size:20px;
+  font-weight:bold;
+  margin-top:8px;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <div class="nav">
-    <div class="logo">Next Plus</div>
-    <button class="login-btn" onclick="openLogin()">تسجيل الدخول</button>
-  </div>
+  <div class="logo">Next Plus</div>
+  <button id="logoutBtn" class="logout hidden">تسجيل خروج</button>
 </header>
 
-<section class="hero">
-  <div class="welcome">مرحباً بك 👋</div>
+<div class="container">
 
-  <h1>خدماتك أونلاين<br>بشكل أسرع وأسهل</h1>
+  <!-- تسجيل الدخول -->
+  <div id="loginPage" class="card">
+    <h1>تسجيل الدخول</h1>
+    <p>ادخل بيانات حسابك للدخول إلى Next Plus</p>
 
-  <p>
-    اطلب خدماتك بسهولة، تابع طلباتك، واعرف حالة الطلب في أي وقت
-    من خلال منصة Next Plus.
-  </p>
+    <input id="loginEmail" type="email" placeholder="البريد الإلكتروني">
+    <input id="loginPassword" type="password" placeholder="كلمة المرور">
 
-  <div class="actions">
-    <button class="primary" onclick="scrollServices()">
-      استعرض الخدمات
+    <button onclick="login()">دخول</button>
+
+    <button class="secondary" onclick="showSignup()">
+      إنشاء حساب جديد
     </button>
 
-    <button class="secondary" onclick="openLogin()">
-      حسابي
-    </button>
+    <div id="loginError" class="error"></div>
   </div>
-</section>
 
-<main class="container" id="services">
 
-  <h2 class="section-title">الخدمات المتاحة</h2>
+  <!-- إنشاء حساب -->
+  <div id="signupPage" class="card hidden">
+    <h1>إنشاء حساب</h1>
+    <p>أنشئ حسابك على Next Plus</p>
 
-  <div class="services">
+    <input id="signupName" type="text" placeholder="الاسم">
+    <input id="signupEmail" type="email" placeholder="البريد الإلكتروني">
+    <input id="signupPassword" type="password" placeholder="كلمة المرور">
 
-    <div class="service">
-      <div class="icon">📱</div>
-      <h3>فودافون داتا</h3>
-      <p>طلب باقة فودافون داتا بسهولة.</p>
+    <button onclick="signup()">إنشاء الحساب</button>
 
-      <div class="service-bottom">
-        <span class="price">350 جنيه</span>
-        <button class="order-btn" onclick="order('فودافون داتا')">
-          اطلب
-        </button>
+    <button class="secondary" onclick="showLogin()">
+      عندي حساب بالفعل
+    </button>
+
+    <div id="signupError" class="error"></div>
+  </div>
+
+
+  <!-- حساب العميل -->
+  <div id="dashboard" class="hidden">
+
+    <div class="card">
+      <h1>أهلاً <span id="userName"></span> 👋</h1>
+      <p>دي لوحة حسابك في Next Plus</p>
+
+      <br>
+
+      <p>رصيدك الحالي</p>
+      <div class="balance">
+        <span id="balance">0</span> جنيه
       </div>
     </div>
 
-    <div class="service">
-      <div class="icon">📶</div>
-      <h3>اتصالات داتا</h3>
-      <p>طلب خدمة اتصالات داتا.</p>
 
-      <div class="service-bottom">
-        <span class="price">350 جنيه</span>
-        <button class="order-btn" onclick="order('اتصالات داتا')">
-          اطلب
-        </button>
+    <div class="card">
+      <h2>🔔 الإشعارات</h2>
+
+      <div id="notifications">
+        <p>لا توجد إشعارات حالياً</p>
       </div>
     </div>
 
-    <div class="service">
-      <div class="icon">🟠</div>
-      <h3>أورنج داتا</h3>
-      <p>طلب خدمة أورنج داتا.</p>
 
-      <div class="service-bottom">
-        <span class="price">350 جنيه</span>
-        <button class="order-btn" onclick="order('أورنج داتا')">
-          اطلب
-        </button>
-      </div>
-    </div>
+    <div class="card">
+      <h2>🛍️ الخدمات</h2>
 
-    <div class="service">
-      <div class="icon">🌐</div>
-      <h3>WE داتا</h3>
-      <p>طلب خدمة WE داتا.</p>
-
-      <div class="service-bottom">
-        <span class="price">350 جنيه</span>
-        <button class="order-btn" onclick="order('WE داتا')">
-          اطلب
-        </button>
+      <div id="services">
+        <p>جاري تحميل الخدمات...</p>
       </div>
     </div>
 
   </div>
 
-  <div class="features">
 
-    <div class="feature">
-      <strong>⚡ تنفيذ سريع</strong>
-      <span>نظام مرتب لاستقبال الطلبات ومتابعة تنفيذها.</span>
+  <!-- لوحة الأدمن -->
+  <div id="adminDashboard" class="hidden">
+
+    <div class="card">
+      <h1>لوحة الإدارة 👑</h1>
+      <p>أنت مسجل كمسؤول في Next Plus.</p>
     </div>
 
-    <div class="feature">
-      <strong>🔐 حساب آمن</strong>
-      <span>لكل عميل حساب خاص به لمتابعة طلباته.</span>
+    <div class="card">
+      <h2>إدارة الموقع</h2>
+
+      <button onclick="alert('هنضيف إدارة المستخدمين هنا')">
+        👥 المستخدمين
+      </button>
+
+      <button onclick="alert('هنضيف إدارة الخدمات هنا')">
+        🛍️ الخدمات
+      </button>
+
+      <button onclick="alert('هنضيف إدارة الطلبات هنا')">
+        📦 الطلبات
+      </button>
+
+      <button onclick="alert('هنضيف إرسال الإشعارات هنا')">
+        🔔 إرسال إشعار
+      </button>
+
+      <button onclick="alert('هنضيف شحن الرصيد هنا')">
+        💰 إضافة رصيد
+      </button>
+
     </div>
-
-    <div class="feature">
-      <strong>🔔 متابعة الطلب</strong>
-      <span>تعرف حالة طلبك من داخل حسابك.</span>
-    </div>
-
-  </div>
-
-</main>
-
-<footer>
-  © 2026 Next Plus — جميع الحقوق محفوظة
-</footer>
-
-
-<!-- Login Modal -->
-
-<div class="modal" id="loginModal">
-
-  <div class="modal-box">
-
-    <button class="close" onclick="closeLogin()">×</button>
-
-    <h2>تسجيل الدخول</h2>
-
-    <input
-      class="input"
-      type="email"
-      placeholder="البريد الإلكتروني"
-    >
-
-    <input
-      class="input"
-      type="password"
-      placeholder="كلمة المرور"
-    >
-
-    <button
-      class="primary"
-      style="width:100%"
-      onclick="fakeLogin()"
-    >
-      دخول
-    </button>
 
   </div>
 
 </div>
 
 
-<script>
+<script type="module">
 
-  function openLogin() {
-    document.getElementById("loginModal").style.display = "flex";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  getDocs
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* Firebase */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAxNbiOlJbslTTw9kAA-TPksib1TuwxL0",
+  authDomain: "next-plus-ae61e.firebaseapp.com",
+  projectId: "next-plus-ae61e",
+  storageBucket: "next-plus-ae61e.firebasestorage.app",
+  messagingSenderId: "231800286831",
+  appId: "1:231800286831:web:557ddf56a2654ca169279a"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+/* الصفحات */
+
+window.showSignup = function(){
+  document.getElementById("loginPage").classList.add("hidden");
+  document.getElementById("signupPage").classList.remove("hidden");
+};
+
+window.showLogin = function(){
+  document.getElementById("signupPage").classList.add("hidden");
+  document.getElementById("loginPage").classList.remove("hidden");
+};
+
+
+/* إنشاء حساب */
+
+window.signup = async function(){
+
+  const name =
+    document.getElementById("signupName").value.trim();
+
+  const email =
+    document.getElementById("signupEmail").value.trim();
+
+  const password =
+    document.getElementById("signupPassword").value;
+
+  const error =
+    document.getElementById("signupError");
+
+  error.textContent = "";
+
+  if(!name || !email || !password){
+    error.textContent = "من فضلك املأ جميع البيانات";
+    return;
   }
 
-  function closeLogin() {
-    document.getElementById("loginModal").style.display = "none";
+  if(password.length < 6){
+    error.textContent = "كلمة المرور لازم تكون 6 أحرف على الأقل";
+    return;
   }
 
-  function scrollServices() {
-    document.getElementById("services").scrollIntoView({
-      behavior: "smooth"
+  try{
+
+    const result =
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+    const user = result.user;
+
+    await setDoc(
+      doc(db,"users",user.uid),
+      {
+        name:name,
+        email:email,
+        balance:0,
+        role:"user",
+        notifications:[],
+        createdAt:new Date()
+      }
+    );
+
+    alert("تم إنشاء الحساب بنجاح ✅");
+
+  }catch(e){
+
+    console.error(e);
+
+    error.textContent =
+      "حدث خطأ أثناء إنشاء الحساب";
+  }
+};
+
+
+/* تسجيل الدخول */
+
+window.login = async function(){
+
+  const email =
+    document.getElementById("loginEmail").value.trim();
+
+  const password =
+    document.getElementById("loginPassword").value;
+
+  const error =
+    document.getElementById("loginError");
+
+  error.textContent = "";
+
+  if(!email || !password){
+    error.textContent =
+      "اكتب البريد الإلكتروني وكلمة المرور";
+    return;
+  }
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+  }catch(e){
+
+    console.error(e);
+
+    error.textContent =
+      "البريد الإلكتروني أو كلمة المرور غير صحيحة";
+  }
+};
+
+
+/* مراقبة تسجيل الدخول */
+
+onAuthStateChanged(auth, async(user)=>{
+
+  const loginPage =
+    document.getElementById("loginPage");
+
+  const signupPage =
+    document.getElementById("signupPage");
+
+  const dashboard =
+    document.getElementById("dashboard");
+
+  const adminDashboard =
+    document.getElementById("adminDashboard");
+
+  const logoutBtn =
+    document.getElementById("logoutBtn");
+
+
+  if(!user){
+
+    loginPage.classList.remove("hidden");
+    signupPage.classList.add("hidden");
+    dashboard.classList.add("hidden");
+    adminDashboard.classList.add("hidden");
+    logoutBtn.classList.add("hidden");
+
+    return;
+  }
+
+
+  loginPage.classList.add("hidden");
+  signupPage.classList.add("hidden");
+  logoutBtn.classList.remove("hidden");
+
+
+  const userDoc =
+    await getDoc(
+      doc(db,"users",user.uid)
+    );
+
+
+  if(!userDoc.exists()){
+
+    dashboard.classList.remove("hidden");
+    document.getElementById("userName").textContent =
+      user.email;
+
+    return;
+  }
+
+
+  const data = userDoc.data();
+
+
+  document.getElementById("userName").textContent =
+    data.name || user.email;
+
+  document.getElementById("balance").textContent =
+    data.balance || 0;
+
+
+  /* الإشعارات */
+
+  const notifications =
+    document.getElementById("notifications");
+
+  notifications.innerHTML = "";
+
+  if(data.notifications && data.notifications.length){
+
+    data.notifications
+      .slice()
+      .reverse()
+      .forEach(notification=>{
+
+        const div =
+          document.createElement("div");
+
+        div.className = "notification";
+
+        div.textContent = notification;
+
+        notifications.appendChild(div);
+
+      });
+
+  }else{
+
+    notifications.innerHTML =
+      "<p>لا توجد إشعارات حالياً</p>";
+  }
+
+
+  /* الخدمات */
+
+  await loadServices();
+
+
+  if(data.role === "admin"){
+
+    dashboard.classList.add("hidden");
+    adminDashboard.classList.remove("hidden");
+
+  }else{
+
+    dashboard.classList.remove("hidden");
+    adminDashboard.classList.add("hidden");
+
+  }
+
+});
+
+
+/* تحميل الخدمات */
+
+async function loadServices(){
+
+  const servicesBox =
+    document.getElementById("services");
+
+  servicesBox.innerHTML = "";
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(db,"services")
+      );
+
+    if(snapshot.empty){
+
+      servicesBox.innerHTML =
+        "<p>لا توجد خدمات حالياً</p>";
+
+      return;
+    }
+
+
+    snapshot.forEach(item=>{
+
+      const data = item.data();
+
+      const service =
+        document.createElement("div");
+
+      service.className = "service";
+
+      service.innerHTML = `
+        <div class="service-title">
+          ${data.name || "خدمة"}
+        </div>
+
+        <div class="price">
+          ${data.price || 0} جنيه
+        </div>
+
+        <button>
+          طلب الخدمة
+        </button>
+      `;
+
+      servicesBox.appendChild(service);
+
     });
-  }
 
-  function order(service) {
-    alert(
-      "الخدمة المطلوبة: " + service +
-      "\n\nسيتم ربط الطلب بالحساب وقاعدة البيانات في الخطوة القادمة."
-    );
-  }
+  }catch(e){
 
-  function fakeLogin() {
-    alert(
-      "سيتم ربط تسجيل الدخول الحقيقي بـ Firebase في الخطوة القادمة."
-    );
+    console.error(e);
+
+    servicesBox.innerHTML =
+      "<p>تعذر تحميل الخدمات</p>";
   }
+}
+
+
+/* تسجيل الخروج */
+
+document
+  .getElementById("logoutBtn")
+  .addEventListener("click",async()=>{
+
+    await signOut(auth);
+
+  });
 
 </script>
 
